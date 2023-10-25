@@ -8,13 +8,13 @@
         "skipLibCheck": true /* Skip type checking all .d.ts files. */,
         // 是否启用实验性的 ES 装饰器
         "experimentalDecorators": true,
-        "baseUrl": "./",
-        "outDir": "./dist",
+        "baseUrl": ".",
+        "outDir": "dist",
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["src/*"]
         }
     },
     "include": ["src/*.ts", "src/**/*.ts"],
     // 不参与打包的目录
-    "exclude": []
+    "exclude": ["node_modules"]
 }

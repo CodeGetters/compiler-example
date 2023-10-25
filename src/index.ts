@@ -1,5 +1,4 @@
-// TODO:解决路径的问题，使其能够保证编译后不改变路径也能运行
-// TODO：配置打包
+import 'module-alias/register';
 import {
     clearAnnotation,
     addSemi,
@@ -8,7 +7,6 @@ import {
 import fs from 'node:fs';
 import path from 'node:path';
 import config from '@/config';
-import 'module-alias/register';
 import readline from 'node:readline';
 
 // 创建  readline.Interface 实例
