@@ -2,7 +2,7 @@
  * 消除多行注释、单行注释、代码后的注释
  * @param {*} line string
  */
-function clearAnnotation(line: string) {
+function clearAnnotation(line: string): string {
     // 单行注释
     const commentReg = /\/\//;
     // 多行注释
@@ -22,7 +22,6 @@ function clearAnnotation(line: string) {
                 : (line = line.split('//')[0]);
         }
     }
-
     return line;
 }
 
@@ -31,7 +30,7 @@ function clearAnnotation(line: string) {
  * } 结尾的不加分号
  * @param {*} line string
  */
-function addSemi(line: string) {
+function addSemi(line: string): string {
     const letterEnd = line.charAt(line.length - 1);
 
     // 句尾为 '}' 的情况
@@ -60,7 +59,7 @@ function addSemi(line: string) {
  * 消除代码中多余的空格
  * @param {*} line string
  */
-function blankElimination(line: string) {
+function blankElimination(line: string): string {
     // 消除 = 前后的空格
     line = line.replace(/\s*=\s*/g, '=');
 
