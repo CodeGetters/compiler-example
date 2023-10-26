@@ -1,48 +1,57 @@
+/**
+ * 从外部文件中逐行读取文件内容
+ * 并对每一行进行处理
+ * 调用处理程序
+ */
+
 import 'module-alias/register';
-import {
-    clearAnnotation,
-    addSemi,
-    blankElimination,
-} from '@/utils/advanceDispose';
 import fs from 'node:fs';
-import path from 'node:path';
 import config from '@/config';
 import readline from 'node:readline';
+import {programPreprocessing} from '@/utils/advanceDispose';
+import {lexicalAnalysis} from '@/utils/lexicalAnalysis';
 
-// 创建  readline.Interface 实例
 // 开始逐行监听
 const readFile = readline.createInterface({
     // 目标文件
     input: fs.createReadStream(
-        path.resolve(__dirname, `${config.exampleDir}/${config.sourceRoutine}`),
+        `${config.dirName}/${config.exampleDir}/${config.sourceRoutine}`,
     ),
     crlfDelay: Infinity,
 });
 
-// 创建写入流
-const writeStream = fs.createWriteStream(
-    path.resolve(__dirname, `${config.exampleDir}/${config.output}`),
+// 预处理写入流
+const pretreatWStream = fs.createWriteStream(
+    `${config.dirName}/${config.exampleDir}/${config.output}`,
     {
-        encoding: 'utf8', // 不写默认是utf8
-        autoClose: true, // 写完是否自动关闭
+        encoding: 'utf8',
+        autoClose: true,
     },
 );
 
-// 逐行修改
 readFile.on('line', (line: string) => {
-    // 消除注释
-    line = clearAnnotation(line);
+    // 预处理
+    line = programPreprocessing(line);
 
-    // 清除代码中多余空格
-    line = blankElimination(line);
+    // 词法分析
+    if (line) {
+        lexicalAnalysis(line, config.tokenMap.tokens);
+    }
 
-    // 句尾添加分号
-    line = addSemi(line);
-
-    writeStream.write(line);
+    // 预处理写入流
+    pretreatWStream.write(line);
 });
 
 readFile.on('close', () => {
-    writeStream.end();
-    console.log('success');
+    pretreatWStream.end();
+    console.log('---预处理阶段已完成---');
+
+    fs.writeFile(
+        `${config.dirName}/${config.exampleDir}/${config.lexicalOutput}`,
+        JSON.stringify(config.tokenMap),
+        (err) => {
+            if (err) console.log('---创建外部JSON文件失败');
+            else console.log('---词法分析阶段已完成---');
+        },
+    );
 });

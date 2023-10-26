@@ -1,4 +1,9 @@
 /**
+ * 文件预处理
+ * 去掉源程序中的空格，跳格，回车，换行，注释等
+ */
+
+/**
  * 消除多行注释、单行注释、代码后的注释
  * @param {*} line string
  */
@@ -81,4 +86,21 @@ function blankElimination(line: string): string {
     return line;
 }
 
-export {clearAnnotation, addSemi, blankElimination};
+/**
+ * 预处理主入口程序
+ * @param line string
+ */
+const programPreprocessing = (line: string): string => {
+    // 消除注释
+    line = clearAnnotation(line);
+
+    // 清除代码中多余空格
+    line = blankElimination(line);
+
+    // 句尾添加分号
+    line = addSemi(line);
+
+    return line;
+};
+
+export {programPreprocessing};
