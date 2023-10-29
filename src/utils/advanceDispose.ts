@@ -65,14 +65,8 @@ function addSemi(line: string): string {
  * @param {*} line string
  */
 function blankElimination(line: string): string {
-    // 消除 = 前后的空格
-    line = line.replace(/\s*=\s*/g, '=');
-
-    // 消除 => 前后的空格
-    line = line.replace(/\s*=>\s*/g, '=>');
-
-    // 消除 ' 左右的空格
-    line = line.replace(/\s*\'\s*/g, "'").replace(/\s*\'\s*/g, "'");
+    // 消除 + - * / = => ' 前后的空格
+    line = line.replace(/\s*([+\-*/='=>])\s*/g, '$1');
 
     // 消除 () 前后的空格
     line = line.replace(/\s*\(\s*/g, '(').replace(/\s*\)\s*/g, ')');

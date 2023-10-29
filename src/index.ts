@@ -29,13 +29,16 @@ const pretreatWStream = fs.createWriteStream(
     },
 );
 
+let lineNum = 0;
+
 readFile.on('line', (line: string) => {
     // 预处理
     line = programPreprocessing(line);
 
     // 词法分析
     if (line) {
-        lexicalAnalysis(line, config.tokenMap.tokens);
+        lineNum++;
+        lexicalAnalysis(line, config.tokenMap.tokens, lineNum);
     }
 
     // 预处理写入流
@@ -50,7 +53,7 @@ readFile.on('close', () => {
         `${config.dirName}/${config.exampleDir}/${config.lexicalOutput}`,
         JSON.stringify(config.tokenMap),
         (err) => {
-            if (err) console.log('---创建外部JSON文件失败');
+            if (err) console.log('---创建外部 JSON 文件失败');
             else console.log('---词法分析阶段已完成---');
         },
     );
