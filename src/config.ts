@@ -9,10 +9,14 @@ export default {
     output: 'output.js',
     // 词法分析输出文件
     lexicalOutput: 'lexicalOutput.json',
-
+    // 文件根目录
     dirName: path.resolve(__dirname),
-
+    // 二元组
     tokenMap: {
         tokens: [],
     },
+    // 语法处理输出文件
+    parseOutput: 'parseOutput.txt',
+    // 语法分析结果
+    ParsingRes: '',
 };

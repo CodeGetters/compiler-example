@@ -23,12 +23,15 @@ function isDigit(char: string) {
 }
 
 /**
- * 扫描主函数
  * @param line
  * @param tokens
  * @param lineNum
  */
-function scanner(line: string, tokens: tokenValItem[], lineNum: number) {
+function lexicalAnalysis(
+    line: string,
+    tokens: tokenValItem[],
+    lineNum: number,
+) {
     // 单词缓存区
     let wordCache = '';
     // 数字缓存区
@@ -36,7 +39,6 @@ function scanner(line: string, tokens: tokenValItem[], lineNum: number) {
     // 字符串缓存区
     let strCache = '';
 
-    console.log('line:', line);
     let circleCount = 0;
     while (circleCount < line.length) {
         if (isLetter(line[circleCount])) {
@@ -86,7 +88,7 @@ function scanner(line: string, tokens: tokenValItem[], lineNum: number) {
             circleCount = circleCount + numCache.length - 1;
             numCache = '';
         } else if (line[circleCount] === ' ') {
-            console.log('这是一个空格 跳过');
+            // console.log('这是一个空格 跳过');
         } else {
             // 符号
 
@@ -119,19 +121,5 @@ function scanner(line: string, tokens: tokenValItem[], lineNum: number) {
         circleCount++;
     }
 }
-
-/**
- * 扫描主函数
- * @param line 一行的字符串
- * @param tokens 输出 JSON 文件内容
- * @param tokens 行数
- */
-const lexicalAnalysis = (
-    line: string,
-    tokens: tokenValItem[],
-    lineNum: number,
-) => {
-    scanner(line, tokens, lineNum);
-};
 
 export {lexicalAnalysis};

@@ -10,6 +10,7 @@ import config from '@/config';
 import readline from 'node:readline';
 import {programPreprocessing} from '@/utils/advanceDispose';
 import {lexicalAnalysis} from '@/utils/lexicalAnalysis';
+import {Parser} from '@/utils/parserCore';
 
 // 开始逐行监听
 const readFile = readline.createInterface({
@@ -39,6 +40,7 @@ readFile.on('line', (line: string) => {
     if (line) {
         lineNum++;
         lexicalAnalysis(line, config.tokenMap.tokens, lineNum);
+        Parser(line, lineNum, config.ParsingRes);
     }
 
     // 预处理写入流
@@ -55,6 +57,15 @@ readFile.on('close', () => {
         (err) => {
             if (err) console.log('---创建外部 JSON 文件失败');
             else console.log('---词法分析阶段已完成---');
+        },
+    );
+
+    fs.writeFile(
+        `${config.dirName}/${config.exampleDir}/${config.parseOutput}`,
+        config.ParsingRes,
+        (err) => {
+            if (err) console.log('---创建外部 TXT 文件失败');
+            else console.log('---语法分析阶段已完成---');
         },
     );
 });
