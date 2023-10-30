@@ -1,6 +1,7 @@
 // 保留字、关键字表
 export const scannerMap = {
-    keyword: [
+    // 保留字
+    reserveWord: [
         'var',
         'let',
         'const',
@@ -46,6 +47,7 @@ export const scannerMap = {
         '*',
         '/',
         '%',
+        '=',
         '+=',
         '-=',
         '*=',
@@ -65,6 +67,7 @@ export const scannerMap = {
         '<=',
         '>=',
         '===',
+        '!=',
         '!==',
     ],
     // 分隔符
@@ -73,8 +76,9 @@ export const scannerMap = {
 
 // 词类型表
 export enum wordMap {
-    KEYWORD = 'keyword',
+    RESERVE = 'reserveWord',
     IDENTIFIER = 'identifier',
     OPERATOR = 'operator',
     DELIMITER = 'delimiter',
+    CONSTANT = 'constant',
 }

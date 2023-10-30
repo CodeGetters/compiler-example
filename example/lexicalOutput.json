@@ -1,1 +1,25 @@
-{"tokens":[{"type":"keyword","val":"let","lineNum":1},{"type":"identifier","val":"a","lineNum":1},{"type":"identifier","val":"a","lineNum":1},{"type":"identifier","val":"a","lineNum":1},{"type":"delimiter","val":";","lineNum":1},{"type":"keyword","val":"let","lineNum":2},{"type":"identifier","val":"b","lineNum":2},{"type":"identifier","val":"b","lineNum":2},{"type":"identifier","val":"b","lineNum":2},{"type":"delimiter","val":";","lineNum":2},{"type":"keyword","val":"let","lineNum":3},{"type":"identifier","val":"c","lineNum":3},{"type":"identifier","val":"ca","lineNum":3},{"type":"operator","val":"+","lineNum":3},{"type":"identifier","val":"cab","lineNum":3},{"type":"delimiter","val":";","lineNum":3},{"type":"keyword","val":"let","lineNum":4},{"type":"identifier","val":"d","lineNum":4},{"type":"identifier","val":"d","lineNum":4},{"type":"identifier","val":"d","lineNum":4},{"type":"identifier","val":"d","lineNum":4},{"type":"identifier","val":"d","lineNum":4},{"type":"delimiter","val":";","lineNum":4},{"type":"keyword","val":"let","lineNum":5},{"type":"identifier","val":"f","lineNum":5},{"type":"identifier","val":"f","lineNum":5},{"type":"identifier","val":"f","lineNum":5},{"type":"operator","val":"+","lineNum":5},{"type":"identifier","val":"f","lineNum":5},{"type":"identifier","val":"f","lineNum":5},{"type":"delimiter","val":";","lineNum":5},{"type":"identifier","val":"f","lineNum":6},{"type":"identifier","val":"ff","lineNum":6},{"type":"operator","val":"+","lineNum":6},{"type":"identifier","val":"ffd","lineNum":6},{"type":"delimiter","val":";","lineNum":6},{"type":"keyword","val":"const","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"delimiter","val":"(","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"delimiter","val":")","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"operator","val":">","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"delimiter","val":"{","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"delimiter","val":"}","lineNum":7},{"type":"identifier","val":"g","lineNum":7},{"type":"delimiter","val":";","lineNum":7}]}
+{
+    "tokens": [
+        {"type": "reserveWord", "val": "let", "lineNum": 1},
+        {"type": "identifier", "val": "a", "lineNum": 1},
+        {"type": "operator", "val": "=", "lineNum": 1},
+        {"type": "constant", "val": "1", "lineNum": 1},
+        {"type": "delimiter", "val": ";", "lineNum": 1},
+        {"type": "reserveWord", "val": "let", "lineNum": 2},
+        {"type": "identifier", "val": "b", "lineNum": 2},
+        {"type": "operator", "val": "=", "lineNum": 2},
+        {"type": "constant", "val": "2", "lineNum": 2},
+        {"type": "delimiter", "val": ";", "lineNum": 2},
+        {"type": "reserveWord", "val": "let", "lineNum": 3},
+        {"type": "identifier", "val": "c", "lineNum": 3},
+        {"type": "operator", "val": "=", "lineNum": 3},
+        {"type": "identifier", "val": "a", "lineNum": 3},
+        {"type": "operator", "val": "+", "lineNum": 3},
+        {"type": "identifier", "val": "b", "lineNum": 3},
+        {"type": "delimiter", "val": ";", "lineNum": 3},
+        {"type": "identifier", "val": "c", "lineNum": 4},
+        {"type": "operator", "val": "+=", "lineNum": 4},
+        {"type": "constant", "val": "1", "lineNum": 4},
+        {"type": "delimiter", "val": ";", "lineNum": 4}
+    ]
+}
