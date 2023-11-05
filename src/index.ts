@@ -10,18 +10,21 @@ import config from '@/config';
 import readline from 'node:readline';
 import {programPreprocessing} from '@/utils/advanceDispose';
 import {lexicalAnalysis} from '@/utils/lexicalAnalysis';
-import {Parser} from '@/utils/parserCore';
+import {mainParser} from '@/utils/parserCore';
 
-// 开始逐行监听
+/**
+ * -------------
+ * 预处理
+ * 词法分析
+ * -------------
+ */
 const readFile = readline.createInterface({
-    // 目标文件
     input: fs.createReadStream(
         `${config.dirName}/${config.exampleDir}/${config.sourceRoutine}`,
     ),
     crlfDelay: Infinity,
 });
 
-// 预处理写入流
 const pretreatWStream = fs.createWriteStream(
     `${config.dirName}/${config.exampleDir}/${config.output}`,
     {
@@ -33,17 +36,15 @@ const pretreatWStream = fs.createWriteStream(
 let lineNum = 0;
 
 readFile.on('line', (line: string) => {
-    // 预处理
+    // 预处理入口
     line = programPreprocessing(line);
 
-    // 词法分析
     if (line) {
         lineNum++;
+        // 预处理入口
         lexicalAnalysis(line, config.tokenMap.tokens, lineNum);
-        Parser(line, lineNum, config.ParsingRes);
     }
 
-    // 预处理写入流
     pretreatWStream.write(line);
 });
 
@@ -57,15 +58,13 @@ readFile.on('close', () => {
         (err) => {
             if (err) console.log('---创建外部 JSON 文件失败');
             else console.log('---词法分析阶段已完成---');
-        },
-    );
-
-    fs.writeFile(
-        `${config.dirName}/${config.exampleDir}/${config.parseOutput}`,
-        config.ParsingRes,
-        (err) => {
-            if (err) console.log('---创建外部 TXT 文件失败');
-            else console.log('---语法分析阶段已完成---');
+            /**
+             * -------------
+             * 语法分析入口文件
+             * -------------
+             */
+            mainParser();
+            console.log('---语法分析阶段已完成---');
         },
     );
 });

@@ -7,8 +7,5 @@
  * @type {symbol}
  */
 
-let a = 1;
-let b = 2;
-let c = a + b;
-
-c += 1;
+if (i > 0) i = i * 2;
+else i = i - 1;
