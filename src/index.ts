@@ -63,8 +63,19 @@ readFile.on('close', () => {
              * 语法分析入口文件
              * -------------
              */
-            mainParser();
-            console.log('---语法分析阶段已完成---');
+
+            fs.readFile(
+                `${config.dirName}/${config.exampleDir}/${config.output}`,
+                'utf-8',
+                (err, fileStr) => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    mainParser(fileStr);
+                    console.log('---语法分析阶段已完成---');
+                },
+            );
         },
     );
 });
